@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AndroidComposeImages"
+rootProject.name = "Android Compose Images"
 include(":app")
