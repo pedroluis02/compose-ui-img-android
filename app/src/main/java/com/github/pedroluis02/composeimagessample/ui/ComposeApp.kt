@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.github.pedroluis02.composeimagessample.R
+import com.github.pedroluis02.composeimagessample.repository.MediaRepository
 import com.github.pedroluis02.composeimagessample.ui.theme.AndroidComposeImagesTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -24,10 +25,8 @@ fun ComposeApp() {
             },
             modifier = Modifier.fillMaxSize()
         ) { innerPadding ->
-            Text(
-                stringResource(id = R.string.app_name),
-                modifier = Modifier.padding(innerPadding)
-            )
+            val elements = MediaRepository.getImages()
+            ImageListView(elements, Modifier.padding(innerPadding))
         }
     }
 }
