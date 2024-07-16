@@ -17,7 +17,7 @@ fun ImageListView(elements: List<ImageElement>, modifier: Modifier = Modifier) {
         columns = GridCells.Fixed(2),
         modifier = modifier
     ) {
-        items(elements) { element ->
+        items(elements, key = { it.id }) { element ->
             Card {
                 AsyncImage(
                     model = element.url,
