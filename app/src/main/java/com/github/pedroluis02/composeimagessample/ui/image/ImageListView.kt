@@ -1,4 +1,4 @@
-package com.github.pedroluis02.composeimagessample.ui.images
+package com.github.pedroluis02.composeimagessample.ui.image
 
 
 import androidx.compose.foundation.layout.Arrangement
@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,6 +26,10 @@ fun ImageListView(
     viewModel: ImageListViewModel = viewModel(),
 ) {
     val state = viewModel.state.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.fetch()
+    }
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(120.dp),
