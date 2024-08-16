@@ -12,12 +12,17 @@ import kotlinx.coroutines.flow.update
 class ImageListViewModel(
     private val repository: MediaRepository = MediaRepositoryImpl()
 ) : ViewModel() {
+
+    companion object {
+        const val DEFAULT_ELEMENTS_SIZE = 30
+    }
+
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     fun fetch() {
         _state.update { currentState ->
-            currentState.copy(elements = repository.getImages(size = 30))
+            currentState.copy(elements = repository.getImages(size = DEFAULT_ELEMENTS_SIZE))
         }
     }
 
