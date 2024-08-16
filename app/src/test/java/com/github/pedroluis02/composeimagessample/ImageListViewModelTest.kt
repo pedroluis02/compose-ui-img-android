@@ -1,5 +1,6 @@
 package com.github.pedroluis02.composeimagessample
 
+import app.cash.turbine.test
 import com.github.pedroluis02.composeimagessample.model.ImageElement
 import com.github.pedroluis02.composeimagessample.repository.MediaRepository
 import com.github.pedroluis02.composeimagessample.ui.image.ImageListViewModel
@@ -35,6 +36,18 @@ class ImageListViewModelTest {
 
         assertEquals(true, results[0].elements.isEmpty())
         assertEquals(ImageListViewModel.DEFAULT_ELEMENTS_SIZE, results[1].elements.size)
+    }
+
+    @Test
+    fun testWithTurbine() = runTest {
+        viewModel.state.test {
+            viewModel.fetch()
+
+            assertEquals(
+                ImageListViewModel.DEFAULT_ELEMENTS_SIZE,
+                expectMostRecentItem().elements.size,
+            )
+        }
     }
 
     inner class MyMediaRepository : MediaRepository {
