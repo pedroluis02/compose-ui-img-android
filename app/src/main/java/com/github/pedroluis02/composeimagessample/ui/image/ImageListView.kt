@@ -16,6 +16,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
@@ -36,13 +37,13 @@ fun ImageListView(
         contentPadding = PaddingValues(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = modifier
+        modifier = modifier.testTag("listView")
     ) {
         items(state.value.elements, key = { it.id }) { element ->
             Card {
                 AsyncImage(
                     model = element.url,
-                    contentDescription = null,
+                    contentDescription = element.url,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .fillMaxWidth()
