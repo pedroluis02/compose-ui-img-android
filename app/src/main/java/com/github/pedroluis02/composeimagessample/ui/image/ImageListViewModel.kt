@@ -3,14 +3,16 @@ package com.github.pedroluis02.composeimagessample.ui.image
 import androidx.lifecycle.ViewModel
 import com.github.pedroluis02.composeimagessample.model.ImageElement
 import com.github.pedroluis02.composeimagessample.repository.MediaRepository
-import com.github.pedroluis02.composeimagessample.repository.MediaRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
-class ImageListViewModel(
-    private val repository: MediaRepository = MediaRepositoryImpl()
+@HiltViewModel
+class ImageListViewModel @Inject constructor(
+    val repository: MediaRepository
 ) : ViewModel() {
 
     companion object {
